@@ -2,179 +2,135 @@
 
 import { useState } from 'react'
 
+const accentRed = '#E8593C'
+const darkBg = '#0A0E27'
+
 function WhatsAppButton() {
-  const whatsappLink = 'https://wa.me/573118909132?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios%20de%20edici%C3%B3n%20de%20video'
+  const whatsappLink = 'https://wa.me/573118909132?text=Hola%2C%20listo%20para%20edici%C3%B3n%20inteligente'
   return (
-    <a
-      href={whatsappLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="fixed bottom-8 right-8 z-40 group"
-      aria-label="Contactar por WhatsApp"
-    >
+    <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="fixed bottom-8 right-8 z-40 group">
       <div className="animate-pulse-subtle">
-        <div className="w-16 h-16 bg-primary-red rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-200">
-          <svg className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <div className="w-16 h-16 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-200" style={{ backgroundColor: accentRed }}>
+          <svg className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371 0-.57 0-.198 0-.52.149-.792.462-.272.314-.92.967-.92 2.354s.211 2.727.294 2.926c.083.198.398.896.767 1.305.369.409.804.685 1.133.8.329.115.647.059.879-.074.232-.133.487-.56.623-1.095.135-.535.267-1.105.3-1.308.032-.203.17-.315.359-.315.19 0 .502.073.867.416.365.343.857 1.07 1.105 1.577.248.506.457.856.567.911.11.054.25.05.429-.018z" />
           </svg>
         </div>
       </div>
-      <span className="hidden group-hover:flex absolute right-full mr-4 bg-dark text-light px-3 py-2 rounded text-sm whitespace-nowrap">
-        Contactar por WhatsApp
-      </span>
     </a>
+  )
+}
+
+function ProcessStep({ number, title, description, icon }) {
+  return (
+    <div className="flex flex-col items-center text-center animate-slide-up" style={{ animationDelay: `${number * 100}ms` }}>
+      <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4 text-2xl font-bold text-white" style={{ backgroundColor: accentRed }}>
+        {icon}
+      </div>
+      <h3 className="font-display text-2xl font-semibold text-white mb-3">
+        {number}. {title}
+      </h3>
+      <p className="text-white/80 max-w-xs leading-relaxed">
+        {description}
+      </p>
+    </div>
   )
 }
 
 export default function Home() {
   const [playingVideo, setPlayingVideo] = useState<number | null>(null)
 
-  const videoSamples = [
-    {
-      id: 1,
-      title: 'Sample 1',
-      videoUrl: '/videos/sample-1.mp4',
-      thumbnail: '/images/sample-1-thumb.jpg',
-    },
-    {
-      id: 2,
-      title: 'Sample 2',
-      videoUrl: '/videos/sample-2.mp4',
-      thumbnail: '/images/sample-2-thumb.jpg',
-    },
-    {
-      id: 3,
-      title: 'Sample 3',
-      videoUrl: '/videos/sample-3.mp4',
-      thumbnail: '/images/sample-3-thumb.jpg',
-    },
-    {
-      id: 4,
-      title: 'Sample 4',
-      videoUrl: '/videos/sample-4.mp4',
-      thumbnail: '/images/sample-4-thumb.jpg',
-    },
+  const samples = [
+    { id: 1, title: 'Reel de Fitness', url: '/videos/sample-1.mp4', thumb: '/images/sample-1-thumb.jpg' },
+    { id: 2, title: 'Short de Coach', url: '/videos/sample-2.mp4', thumb: '/images/sample-2-thumb.jpg' },
+    { id: 3, title: 'Podcast Clip', url: '/videos/sample-3.mp4', thumb: '/images/sample-3-thumb.jpg' },
   ]
 
-  const benefits = [
-    {
-      title: 'Edición Experta',
-      description: 'Cortes dinámicos, transiciones suaves y timing perfecto que engancha desde el primer segundo.',
-    },
-    {
-      title: 'IA + Creatividad',
-      description: 'Automatizo lo tedioso para que nos enfoquemos en lo que importa: impacto y conversión.',
-    },
-    {
-      title: 'Entrega Rápida',
-      description: 'Desde tu idea al video listo: 24-48 horas sin compromiso en calidad.',
-    },
+  const pillars = [
+    { title: 'Inteligencia automática', desc: 'No solo edito rápido. Edito inteligente. Cada decisión está optimizada.' },
+    { title: 'Tu tiempo vale más', desc: 'Mientras IA acelera, tú estrategia. Yo me encargo del resto.' },
+    { title: 'Resultados que hablan', desc: 'Videos que convierten. Métricas que demuestran. Clientes que vuelven.' },
   ]
 
   return (
     <>
       <WhatsAppButton />
 
-      {/* Hero Section */}
-      <section
-        id="hero"
-        className="min-h-screen flex flex-col items-center justify-center px-sm md:px-lg bg-light"
-      >
-        <div className="text-center max-w-3xl animate-fade-in">
-          <h1 className="font-display text-5xl md:text-7xl font-bold text-dark mb-sm md:mb-md leading-tight">
-            Videos que Venden
+      {/* HERO */}
+      <section className="min-h-screen flex items-center justify-center px-8 md:px-16" style={{ backgroundColor: darkBg }}>
+        <div className="max-w-4xl text-center animate-fade-in">
+          <h1 className="font-display text-6xl md:text-8xl font-bold text-white mb-6 leading-tight">
+            Asistente IA +<br />Editor de Video
           </h1>
-          <p className="font-body text-xl md:text-2xl text-dark/70 mb-lg md:mb-xl max-w-2xl mx-auto leading-relaxed">
-            Especialista en edición de video y IA. Transformo ideas en reels y shorts que convierten seguidores en clientes.
+          <p className="font-body text-xl md:text-2xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed">
+            Pienso el contenido. La IA lo acelera. Tú ganas.
           </p>
-          <a
-            href="#portfolio"
-            className="inline-block bg-primary-red text-white px-lg py-sm md:py-md text-lg font-semibold rounded transition-transform duration-200 hover:scale-105 active:scale-95"
-          >
-            Ver Trabajos
+          <a href="#como-funciona" className="inline-block px-8 py-4 text-lg font-semibold text-white rounded transition-all duration-200 hover:scale-105" style={{ backgroundColor: accentRed }}>
+            Ver cómo funciona ↓
           </a>
         </div>
       </section>
 
-      {/* Portfolio Section */}
-      <section id="portfolio" className="py-xl md:py-2xl bg-white">
-        <div className="max-w-7xl mx-auto px-sm md:px-lg">
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-dark text-center mb-xl md:mb-2xl">
-            Últimos Trabajos
+      {/* CÓMO FUNCIONA */}
+      <section id="como-funciona" className="py-24 px-8 md:px-16 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-display text-5xl md:text-6xl font-bold text-center mb-20" style={{ color: darkBg }}>
+            Cómo funciona
           </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <ProcessStep number={1} title="Análisis IA" icon="🧠" description="Entiendo tu contenido, audiencia y objetivo. Sin genéricos." />
+            <ProcessStep number={2} title="Edición inteligente" icon="⚡" description="Automatizo lo repetitivo, perfecciono lo creativo. Tú decides." />
+            <ProcessStep number={3} title="Resultado" icon="🎯" description="Video optimizado, listo para convertir. Métricas incluidas." />
+          </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-lg md:gap-xl">
-            {videoSamples.map((video, idx) => (
-              <div
-                key={video.id}
-                className="group relative aspect-[9/16] overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer animate-slide-up"
-                style={{ animationDelay: `${idx * 100}ms` }}
-                onClick={() => setPlayingVideo(video.id)}
-              >
-                {playingVideo === video.id ? (
-                  <video
-                    key={`playing-${video.id}`}
-                    autoPlay
-                    controls
-                    className="w-full h-full object-cover"
-                    onEnded={() => setPlayingVideo(null)}
-                  >
-                    <source src={video.videoUrl} type="video/mp4" />
-                    Tu navegador no soporta video HTML5
-                  </video>
-                ) : (
-                  <>
-                    <img
-                      src={video.thumbnail}
-                      alt={video.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-
-                    {/* Play Button Overlay */}
-                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-200 flex items-center justify-center">
-                      <svg
-                        className="w-20 h-20 text-white group-hover:scale-110 transition-transform duration-200"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-
-                    {/* Video Info */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-md">
-                      <h3 className="font-display text-xl font-semibold text-white">{video.title}</h3>
-                    </div>
-                  </>
-                )}
+      {/* TRABAJOS */}
+      <section className="py-24 px-8 md:px-16" style={{ backgroundColor: '#F5F3F0' }}>
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-display text-5xl md:text-6xl font-bold text-center mb-16" style={{ color: darkBg }}>
+            Últimos trabajos
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {samples.map((video, idx) => (
+              <div key={video.id} className="group cursor-pointer animate-slide-up" style={{ animationDelay: `${idx * 100}ms` }} onClick={() => setPlayingVideo(video.id)}>
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg mb-4">
+                  {playingVideo === video.id ? (
+                    <video autoPlay controls className="w-full h-full object-cover" onEnded={() => setPlayingVideo(null)}>
+                      <source src={video.url} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <>
+                      <img src={video.thumb} alt={video.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                        <svg className="w-16 h-16 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </>
+                  )}
+                </div>
+                <h3 className="font-display text-xl font-semibold" style={{ color: darkBg }}>{video.title}</h3>
+                <p className="text-sm text-gray-600 mt-1">48h → 6h con IA</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Por Qué Yo Section */}
-      <section id="benefits" className="py-xl md:py-2xl bg-light">
-        <div className="max-w-6xl mx-auto px-sm md:px-lg">
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-dark text-center mb-xl md:mb-2xl">
-            Por Qué Yo
+      {/* POR QUÉ YO */}
+      <section className="py-24 px-8 md:px-16 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-display text-5xl md:text-6xl font-bold text-center mb-16" style={{ color: darkBg }}>
+            Por qué yo
           </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-lg md:gap-xl">
-            {benefits.map((benefit, idx) => (
-              <div
-                key={idx}
-                className="p-lg md:p-xl bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-t-2 border-primary-red animate-slide-up"
-                style={{ animationDelay: `${idx * 150}ms` }}
-              >
-                <div className="w-12 h-12 bg-primary-red/10 rounded-lg mb-md flex items-center justify-center">
-                  <div className="w-6 h-6 bg-primary-red rounded-full" />
-                </div>
-                <h3 className="font-display text-2xl font-semibold text-dark mb-sm">
-                  {benefit.title}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {pillars.map((pillar, idx) => (
+              <div key={idx} className="p-8 rounded-lg border-l-4 animate-slide-up" style={{ borderColor: accentRed, animationDelay: `${idx * 100}ms` }}>
+                <h3 className="font-display text-2xl font-semibold mb-4" style={{ color: darkBg }}>
+                  {pillar.title}
                 </h3>
-                <p className="font-body text-dark/70 leading-relaxed">
-                  {benefit.description}
+                <p className="text-gray-700 leading-relaxed">
+                  {pillar.desc}
                 </p>
               </div>
             ))}
@@ -182,29 +138,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact CTA Section */}
-      <section id="contact" className="py-xl md:py-2xl bg-dark text-white">
-        <div className="max-w-4xl mx-auto px-sm md:px-lg text-center">
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-md md:mb-lg">
-            ¿Tu próximo video está listo?
+      {/* CONTACTO */}
+      <section className="py-24 px-8 md:px-16" style={{ backgroundColor: darkBg }}>
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="font-display text-5xl md:text-6xl font-bold text-white mb-8">
+            ¿Listo para edición inteligente?
           </h2>
-          <p className="font-body text-xl text-white/80 mb-xl md:mb-2xl">
-            Escríbeme por WhatsApp y cuéntame tu idea. Sin compromisos, solo una primera conversación.
+          <p className="text-xl text-white/80 mb-12">
+            Escríbeme por WhatsApp. Sin compromisos. Solo una conversación.
           </p>
-          <a
-            href="https://wa.me/573118909132?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios%20de%20edici%C3%B3n%20de%20video"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-primary-red text-white px-xl py-md text-lg font-semibold rounded transition-all duration-200 hover:scale-105 active:scale-95"
-          >
-            Contactar Ahora
+          <a href="https://wa.me/573118909132?text=Hola%2C%20listo%20para%20edici%C3%B3n%20inteligente" target="_blank" rel="noopener noreferrer" className="inline-block px-12 py-5 text-lg font-semibold text-white rounded transition-all duration-200 hover:scale-105" style={{ backgroundColor: accentRed }}>
+            Contactar ahora
           </a>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-dark text-white/60 py-lg text-center font-body text-sm">
-        <p>© 2026 Yorman. Especialista en Edición de Video + IA.</p>
+      {/* FOOTER */}
+      <footer className="py-8 px-8 text-center text-white/60" style={{ backgroundColor: '#050A15' }}>
+        <p className="font-body text-sm">© 2026 Yorman. Asistente IA + Editor de Video.</p>
       </footer>
     </>
   )
