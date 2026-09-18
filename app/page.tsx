@@ -1,69 +1,211 @@
-import Image from "next/image";
+'use client'
+
+import { useState } from 'react'
+
+function WhatsAppButton() {
+  const whatsappLink = 'https://wa.me/573118909132?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios%20de%20edici%C3%B3n%20de%20video'
+  return (
+    <a
+      href={whatsappLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-8 right-8 z-40 group"
+      aria-label="Contactar por WhatsApp"
+    >
+      <div className="animate-pulse-subtle">
+        <div className="w-16 h-16 bg-primary-red rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-200">
+          <svg className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371 0-.57 0-.198 0-.52.149-.792.462-.272.314-.92.967-.92 2.354s.211 2.727.294 2.926c.083.198.398.896.767 1.305.369.409.804.685 1.133.8.329.115.647.059.879-.074.232-.133.487-.56.623-1.095.135-.535.267-1.105.3-1.308.032-.203.17-.315.359-.315.19 0 .502.073.867.416.365.343.857 1.07 1.105 1.577.248.506.457.856.567.911.11.054.25.05.429-.018z" />
+          </svg>
+        </div>
+      </div>
+      <span className="hidden group-hover:flex absolute right-full mr-4 bg-dark text-light px-3 py-2 rounded text-sm whitespace-nowrap">
+        Contactar por WhatsApp
+      </span>
+    </a>
+  )
+}
 
 export default function Home() {
+  const [playingVideo, setPlayingVideo] = useState<number | null>(null)
+
+  const videoSamples = [
+    {
+      id: 1,
+      title: 'Sample 1',
+      videoUrl: '/videos/sample-1.mp4',
+      thumbnail: '/images/sample-1-thumb.jpg',
+    },
+    {
+      id: 2,
+      title: 'Sample 2',
+      videoUrl: '/videos/sample-2.mp4',
+      thumbnail: '/images/sample-2-thumb.jpg',
+    },
+    {
+      id: 3,
+      title: 'Sample 3',
+      videoUrl: '/videos/sample-3.mp4',
+      thumbnail: '/images/sample-3-thumb.jpg',
+    },
+    {
+      id: 4,
+      title: 'Sample 4',
+      videoUrl: '/videos/sample-4.mp4',
+      thumbnail: '/images/sample-4-thumb.jpg',
+    },
+  ]
+
+  const benefits = [
+    {
+      title: 'Edición Experta',
+      description: 'Cortes dinámicos, transiciones suaves y timing perfecto que engancha desde el primer segundo.',
+    },
+    {
+      title: 'IA + Creatividad',
+      description: 'Automatizo lo tedioso para que nos enfoquemos en lo que importa: impacto y conversión.',
+    },
+    {
+      title: 'Entrega Rápida',
+      description: 'Desde tu idea al video listo: 24-48 horas sin compromiso en calidad.',
+    },
+  ]
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <>
+      <WhatsAppButton />
+
+      {/* Hero Section */}
+      <section
+        id="hero"
+        className="min-h-screen flex flex-col items-center justify-center px-sm md:px-lg bg-light"
+      >
+        <div className="text-center max-w-3xl animate-fade-in">
+          <h1 className="font-display text-5xl md:text-7xl font-bold text-dark mb-sm md:mb-md leading-tight">
+            Videos que Venden
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="font-body text-xl md:text-2xl text-dark/70 mb-lg md:mb-xl max-w-2xl mx-auto leading-relaxed">
+            Especialista en edición de video y IA. Transformo ideas en reels y shorts que convierten seguidores en clientes.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#portfolio"
+            className="inline-block bg-primary-red text-white px-lg py-sm md:py-md text-lg font-semibold rounded transition-transform duration-200 hover:scale-105 active:scale-95"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+            Ver Trabajos
           </a>
         </div>
-      </main>
-    </div>
-  );
+      </section>
+
+      {/* Portfolio Section */}
+      <section id="portfolio" className="py-xl md:py-2xl bg-white">
+        <div className="max-w-7xl mx-auto px-sm md:px-lg">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-dark text-center mb-xl md:mb-2xl">
+            Últimos Trabajos
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-lg md:gap-xl">
+            {videoSamples.map((video, idx) => (
+              <div
+                key={video.id}
+                className="group relative aspect-[9/16] overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer animate-slide-up"
+                style={{ animationDelay: `${idx * 100}ms` }}
+                onClick={() => setPlayingVideo(video.id)}
+              >
+                {playingVideo === video.id ? (
+                  <video
+                    key={`playing-${video.id}`}
+                    autoPlay
+                    controls
+                    className="w-full h-full object-cover"
+                    onEnded={() => setPlayingVideo(null)}
+                  >
+                    <source src={video.videoUrl} type="video/mp4" />
+                    Tu navegador no soporta video HTML5
+                  </video>
+                ) : (
+                  <>
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+
+                    {/* Play Button Overlay */}
+                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-200 flex items-center justify-center">
+                      <svg
+                        className="w-20 h-20 text-white group-hover:scale-110 transition-transform duration-200"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+
+                    {/* Video Info */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-md">
+                      <h3 className="font-display text-xl font-semibold text-white">{video.title}</h3>
+                    </div>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Por Qué Yo Section */}
+      <section id="benefits" className="py-xl md:py-2xl bg-light">
+        <div className="max-w-6xl mx-auto px-sm md:px-lg">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-dark text-center mb-xl md:mb-2xl">
+            Por Qué Yo
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-lg md:gap-xl">
+            {benefits.map((benefit, idx) => (
+              <div
+                key={idx}
+                className="p-lg md:p-xl bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-t-2 border-primary-red animate-slide-up"
+                style={{ animationDelay: `${idx * 150}ms` }}
+              >
+                <div className="w-12 h-12 bg-primary-red/10 rounded-lg mb-md flex items-center justify-center">
+                  <div className="w-6 h-6 bg-primary-red rounded-full" />
+                </div>
+                <h3 className="font-display text-2xl font-semibold text-dark mb-sm">
+                  {benefit.title}
+                </h3>
+                <p className="font-body text-dark/70 leading-relaxed">
+                  {benefit.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact CTA Section */}
+      <section id="contact" className="py-xl md:py-2xl bg-dark text-white">
+        <div className="max-w-4xl mx-auto px-sm md:px-lg text-center">
+          <h2 className="font-display text-4xl md:text-5xl font-bold mb-md md:mb-lg">
+            ¿Tu próximo video está listo?
+          </h2>
+          <p className="font-body text-xl text-white/80 mb-xl md:mb-2xl">
+            Escríbeme por WhatsApp y cuéntame tu idea. Sin compromisos, solo una primera conversación.
+          </p>
+          <a
+            href="https://wa.me/573118909132?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios%20de%20edici%C3%B3n%20de%20video"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-primary-red text-white px-xl py-md text-lg font-semibold rounded transition-all duration-200 hover:scale-105 active:scale-95"
+          >
+            Contactar Ahora
+          </a>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-dark text-white/60 py-lg text-center font-body text-sm">
+        <p>© 2026 Yorman. Especialista en Edición de Video + IA.</p>
+      </footer>
+    </>
+  )
 }
