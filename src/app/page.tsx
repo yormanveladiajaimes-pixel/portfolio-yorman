@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 function WhatsAppButton() {
   const whatsappLink = 'https://wa.me/573118909132?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios%20de%20edici%C3%B3n%20de%20video'
@@ -27,14 +27,7 @@ function WhatsAppButton() {
 }
 
 export default function Home() {
-  const [mounted, setMounted] = useState(false)
   const [playingVideo, setPlayingVideo] = useState<number | null>(null)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) return null
 
   const videoSamples = [
     {
@@ -87,7 +80,7 @@ export default function Home() {
         id="hero"
         className="min-h-screen flex flex-col items-center justify-center px-sm md:px-lg bg-light"
       >
-        <div className={`text-center max-w-3xl ${mounted ? 'animate-fade-in' : ''}`}>
+        <div className="text-center max-w-3xl animate-fade-in">
           <h1 className="font-display text-5xl md:text-7xl font-bold text-dark mb-sm md:mb-md leading-tight">
             Videos que Venden
           </h1>
@@ -114,9 +107,7 @@ export default function Home() {
             {videoSamples.map((video, idx) => (
               <div
                 key={video.id}
-                className={`group relative aspect-[9/16] overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer ${
-                  mounted ? 'animate-slide-up' : ''
-                }`}
+                className="group relative aspect-[9/16] overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer animate-slide-up"
                 style={{ animationDelay: `${idx * 100}ms` }}
                 onClick={() => setPlayingVideo(video.id)}
               >
@@ -173,9 +164,7 @@ export default function Home() {
             {benefits.map((benefit, idx) => (
               <div
                 key={idx}
-                className={`p-lg md:p-xl bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-t-2 border-primary-red ${
-                  mounted ? 'animate-slide-up' : ''
-                }`}
+                className="p-lg md:p-xl bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-t-2 border-primary-red animate-slide-up"
                 style={{ animationDelay: `${idx * 150}ms` }}
               >
                 <div className="w-12 h-12 bg-primary-red/10 rounded-lg mb-md flex items-center justify-center">
